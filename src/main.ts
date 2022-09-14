@@ -4,12 +4,14 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 // import 'element-plus/theme-chalk/base.css'
 // import { ElButton } from 'element-plus/lib/index'
-import './service/axios_demo'
+// import './service/axios_demo''
 
 import App from './App.vue'
 
 import router from '@/router'
 import store from '@/store'
+import ylRequest from './service'
+import * as constants from 'constants'
 
 const app = createApp(App)
 
@@ -20,3 +22,17 @@ app.mount('#app')
 
 console.log(process.env.VUE_APP_BASE_URL)
 console.log(process.env.VUE_APP_BASE_NAME)
+
+interface DataType {
+  data: any
+  returnCode: string
+  success: boolean
+}
+ylRequest
+  .get<DataType>({
+    url: '/home/multidata'
+  })
+  .then((res) => {
+    console.log(res)
+    console.log(res.data)
+  })
