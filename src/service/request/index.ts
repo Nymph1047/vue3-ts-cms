@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import type { AxiosInstance } from 'axios'
 import type { YLRequsetInterceptors, YLRequestConfig } from './type'
 
@@ -69,7 +69,7 @@ class YLRequest {
       )
   }
   // 封装一个request函数
-  requset<T>(config: YLRequestConfig): Promise<T> {
+  requset<T>(config: YLRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       if (config.interceptors?.requestInterceptor) {
         config = config.interceptors?.requestInterceptor(config)
@@ -96,16 +96,16 @@ class YLRequest {
     })
   }
 
-  get<T>(config: YLRequestConfig): Promise<T> {
+  get<T>(config: YLRequestConfig<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'GET' })
   }
-  post<T>(config: YLRequestConfig): Promise<T> {
+  post<T>(config: YLRequestConfig<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'POST' })
   }
-  delete<T>(config: YLRequestConfig): Promise<T> {
+  delete<T>(config: YLRequestConfig<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'DELETE' })
   }
-  patch<T>(config: YLRequestConfig): Promise<T> {
+  patch<T>(config: YLRequestConfig<T>): Promise<T> {
     return this.requset<T>({ ...config, method: 'PATCH' })
   }
 }

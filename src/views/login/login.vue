@@ -1,22 +1,28 @@
 <template>
-  <div>login</div>
+  <div class="login">
+    <loginPanel />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import loginPanel from '@/views/login/cpns/login-panel.vue'
 
 export default defineComponent({
-  name: 'App'
+  name: 'login',
+  components: {
+    loginPanel
+  }
 })
 </script>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="less" scoped>
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: url('../../assets/img/login-bg.svg');
 }
 </style>

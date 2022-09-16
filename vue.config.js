@@ -1,5 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
+  lintOnSave: false,
   transpileDependencies: true,
   // 1、配置方式一：CLI提供的属性
   outputDir: './build',
@@ -8,7 +9,7 @@ module.exports = defineConfig({
   configureWebpack: {
     resolve: {
       alias: {
-        comments: '@/component'
+        comments: '@/components'
       }
     }
   }
