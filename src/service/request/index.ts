@@ -31,7 +31,6 @@ class YLRequest {
     // 请求是后添加的先执行，响应是后添加的后执行
     this.instance.interceptors.request.use(
       (config) => {
-        console.log('所有的实例都有的拦截器：请求拦截成功')
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -42,23 +41,19 @@ class YLRequest {
         return config
       },
       (err) => {
-        console.log('所有的实例都有的拦截器：请求拦截失败')
         return err
       }
     ),
       this.instance.interceptors.response.use(
         (res) => {
-          console.log('所有的实例都有的拦截器：响应成功拦截')
           this.loading?.close()
           const data = res.data
           if (data.returnCode === '-1001') {
-            console.log('请求失败，错误信息')
           } else {
             return data
           }
         },
         (err) => {
-          console.log('所有的实例都有的拦截器：响应失败拦截')
           this.loading?.close()
           // 可用switch
           if (err.response.status === 404) {

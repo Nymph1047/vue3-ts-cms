@@ -43,7 +43,7 @@ export default defineComponent({
     const currentTab = ref('account')
     const accountRef = ref<InstanceType<typeof loginAccount>>()
     const handleLoginClick = () => {
-      accountRef.value?.loginAction()
+      accountRef.value?.loginAction(isKeepPassword.value)
     }
     return { isKeepPassword, currentTab, accountRef, handleLoginClick }
   }
